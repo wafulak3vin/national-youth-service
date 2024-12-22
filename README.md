@@ -54,9 +54,9 @@ The NYS Management System is a comprehensive application designed to streamline 
     cd national-youth-service
     ```
 
-2. Build the project:
+2. Start the IC local replica:
     ```bash
-    dfx build
+    dfx start --clean
     ```
 
 3. Deploy the project to a local Internet Computer replica:
@@ -65,19 +65,6 @@ The NYS Management System is a comprehensive application designed to streamline 
     ```
 
 ## Usage
-
-1. Start the Internet Computer replica:
-    ```bash
-    dfx start
-    ```
-
-2. Access the deployed application using:
-    ```bash
-    dfx canister call <canister_name> <function_name> --argument '<arguments>'
-    ```
-    Replace `<canister_name>` and `<function_name>` with the appropriate values.
-
-## Example Commands
 
 ### Add a New Recruit
 ```bash
