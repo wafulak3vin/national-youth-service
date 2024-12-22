@@ -1,0 +1,97 @@
+type CreateNYSUnitPayload = record {
+  contact : text;
+  name : text;
+  capacity : nat64;
+  location : text;
+};
+type CreateProjectPayload = record {
+  name : text;
+  description : text;
+  end_date : nat64;
+  start_date : nat64;
+  budget : float64;
+  nys_unit_id : nat64;
+};
+type Expense = record {
+  id : nat64;
+  date : nat64;
+  description : text;
+  category : text;
+  amount : float64;
+  nys_unit_id : nat64;
+};
+type Message = variant {
+  Error : text;
+  InvalidPayload : text;
+  NotFound : text;
+  Success : text;
+};
+type NYSUnit = record {
+  id : nat64;
+  contact : text;
+  name : text;
+  created_at : nat64;
+  capacity : nat64;
+  location : text;
+};
+type Project = record {
+  id : nat64;
+  status : text;
+  name : text;
+  description : text;
+  end_date : nat64;
+  start_date : nat64;
+  budget : float64;
+  nys_unit_id : nat64;
+};
+type RecordExpensePayload = record {
+  description : text;
+  category : text;
+  amount : float64;
+  nys_unit_id : nat64;
+};
+type Recruit = record {
+  id : nat64;
+  age : nat64;
+  name : text;
+  created_at : nat64;
+  gender : text;
+  skills : vec text;
+  training_status : text;
+  nys_unit_id : nat64;
+};
+type RegisterRecruitPayload = record {
+  age : nat64;
+  name : text;
+  gender : text;
+  skills : vec text;
+  nys_unit_id : nat64;
+};
+type RegisterVehiclePayload = record {
+  model : text;
+  registration_number : text;
+  capacity : nat64;
+  nys_unit_id : nat64;
+};
+type Result = variant { Ok : float64; Err : Message };
+type Result_1 = variant { Ok : NYSUnit; Err : Message };
+type Result_2 = variant { Ok : Project; Err : Message };
+type Result_3 = variant { Ok : Expense; Err : Message };
+type Result_4 = variant { Ok : Recruit; Err : Message };
+type Result_5 = variant { Ok : Vehicle; Err : Message };
+type Vehicle = record {
+  id : nat64;
+  status : text;
+  model : text;
+  registration_number : text;
+  capacity : nat64;
+  nys_unit_id : nat64;
+};
+service : {
+  calculate_total_expenses : (nat64) -> (Result) query;
+  create_nys_unit : (CreateNYSUnitPayload) -> (Result_1);
+  create_project : (CreateProjectPayload) -> (Result_2);
+  record_expense : (RecordExpensePayload) -> (Result_3);
+  register_recruit : (RegisterRecruitPayload) -> (Result_4);
+  register_vehicle : (RegisterVehiclePayload) -> (Result_5);
+}
